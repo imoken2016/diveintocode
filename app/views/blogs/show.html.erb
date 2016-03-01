@@ -9,7 +9,9 @@
       <strong>本文:</strong>
       <%= @blog.content %>
     </p>
-    <%= render partial: 'comments/index',locals: { comments: @blog.comments} %>
+    <div id="comments_area">
+      <%= render partial: 'comments/index',locals: { comments: @blog.comments} %>
+    </div>
     <%= render partial: 'comments/form',locals: { comments: @blog.comments} %>
 
     <%= link_to '編集する', edit_blog_path(@blog) %> |
