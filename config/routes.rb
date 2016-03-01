@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comments
   get 'about/company_overview'
 
   devise_for :user, controllers: { 
@@ -9,8 +10,10 @@ Rails.application.routes.draw do
   omniauth_callbacks: "users/omniauth_callbacks" 
   }
   resources :users, only: [:index, :show, :edit, :update]
-  root to: "top#index" 
-  resources :blogs
+  root to: "top#index"
+  resources :blogs do
+    resources :comments
+  end
   get 'contacts' => 'contacts#index'              # 入力画面
   post 'contacts' => 'contacts#index'              # 入力画面
   post 'contacts/confirm' => 'contacts#confirm'   # 確認画面
