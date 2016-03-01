@@ -3,7 +3,7 @@
   <% unless comment.id.nil? %>
     <li><%= comment.user %><%= comment.content %>
     <%= link_to 'Edit', edit_blog_comment_path(@blog,comment) %>
-    <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    <%= link_to 'Destroy', blog_comment_path(@blog, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } %></li>
   <% end %>
 <% end %>
 </ul>
