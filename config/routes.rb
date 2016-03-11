@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   passwords: "users/passwords",
   omniauth_callbacks: "users/omniauth_callbacks" 
   }
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    member do
+      get :following, :followers
+    end
+  end
   root to: "top#index"
   resources :blogs do
     resources :comments
@@ -19,5 +23,6 @@ Rails.application.routes.draw do
   post 'contacts/confirm' => 'contacts#confirm'   # 確認画面
   post 'contacts/thanks' => 'contacts#thanks'     # 送信完了画面
   get 'contacts/inbox' => 'contacts#inbox'
+  resources :relationships, only: [:create, :destroy]
   
 end

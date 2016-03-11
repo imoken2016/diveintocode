@@ -13,41 +13,40 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 gem 'rspec-rails'
 gem 'capybara'
-  
 gem 'rambulance'
 
 group :development, :test do
-  gem 'awesome_print' 
-  gem 'better_errors' 
-  gem 'binding_of_caller' 
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'database_rewinder'
-  gem 'factory_girl_rails' 
-  gem 'hirb-unicode' 
-  gem 'hirb' 
-  gem 'pry-byebug' 
-  gem 'pry-doc' 
-  gem 'pry-rails' 
-  gem 'pry-stack_explorer' 
-  gem 'quiet_assets' 
+  gem 'factory_girl_rails'
+  gem 'hirb-unicode'
+  gem 'hirb'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'quiet_assets'
   gem 'tapp'
-  gem 'timecop' 
-  gem "annotate", github: "ctran/annotate_models" 
-  gem "colorize_unpermitted_parameters" 
-  gem "faker" 
-  gem "guard-rspec", require: false 
+  gem 'timecop'
+  gem "annotate", github: "ctran/annotate_models"
+  gem "colorize_unpermitted_parameters"
+  gem "faker"
+  gem "guard-rspec", require: false
   gem "rack-mini-profiler"
-  gem "spring-commands-rspec" 
+  gem "spring-commands-rspec"
   gem "xray-rails"
 end
 
 gem 'devise'
 
-gem 'therubyracer', platforms: :ruby 
-gem 'bootstrap-sass', '~> 3.2.0' 
+gem 'therubyracer', platforms: :ruby
+gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
-gem 'omniauth' 
-gem 'omniauth-twitter' 
+gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'bootstrap-social-rails'
 gem 'carrierwave'
