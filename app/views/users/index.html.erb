@@ -1,9 +1,17 @@
-<% provide(:title,'All users') %>
-<h1>ユーザー一覧</h1>
-<ul class="users">
-  <%= render @users %>
-</ul>
-
+<div class="row">
+  <div class="col-md-8">
+    <% provide(:title,'All users') %>
+    <h1>ユーザー一覧</h1>
+    <ul class="users">
+    <%= render @users %>
+    <%= paginate @users %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <h1>バナーを貼る</h1>
+    <p>2カラム</p>
+  </div>
+</div>
 
 
 <!--
