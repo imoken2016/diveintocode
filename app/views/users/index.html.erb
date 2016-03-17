@@ -1,4 +1,13 @@
-<% @users.each do |user| %>
+<% provide(:title,'All users') %>
+<h1>ユーザー一覧</h1>
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+
+
+
+    <% @users.each do |user| %>
 <div class="row">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
