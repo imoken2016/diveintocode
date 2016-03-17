@@ -15,9 +15,20 @@
     <%= f.hidden_field :blog_id %>
     <%= f.hidden_field :user_id %>
     <%= f.label :comment %><br>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+    <script>
+      $(function(){
+        $("input"). keydown(function(e) {
+          if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+      });
+    </script>
 <% end %>
