@@ -1,8 +1,3 @@
-<%= reder partial: "follow_form", locals: {user: @user} if signed_in? %>
-<% @friend_users ||= current_user %>
-<%= link_to '友達', following_user_path(@friend_users) %>
-<%= link_to 'Back', users_path %>
-
 
 <div class="row">
   <div class="col-sm-6 col-md-4 innerLR">
@@ -15,3 +10,8 @@
     </div>
   </div>
 </div>
+
+<%= render partial: "follow_form", locals: {user: @user} if signed_in? %>
+<% @friend_users ||= current_user %>
+<%= link_to '友達', following_user_path(@friend_users) %>
+<%= link_to 'Back', users_path %>

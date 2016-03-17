@@ -94,6 +94,19 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id)
   end
 
+  #フォローされているかどうかを確認する
+  def followed?(other_user)
+    reverse_relationships.find_by(follower_id: other_user.id)
+  end
+
+  #お互いにフォローしあっているかどうか
+  def mutual_followers
+    followed_users = User.followed_users(self.id)
+    follower_users = User.follower_users(self.id)
+    followed_users.where(id: follower_users.ids)
+  end
+
+
   #自分がフォローしあっているユーザー一覧を取得する
   def friend
     User.form_users_followed_by(self)
@@ -101,7 +114,7 @@ class User < ActiveRecord::Base
 
   #フォローしあっているユーザー一覧を取得する
   def self.form_users_followed_by(user)
-    followed_user_ids = "SELECT X.id FROM (SELECT users.*FROM users INNER JOIN relationships ON users.id = relationships.followed_id WHERE relationships.follower_id = :user_id) X INNER JOIN (SELECT users.* FROM users INNER JOIN relationships ON users.id = relationships.follower_id WHERE relationships.followed_id = :user_id) Y ON X.id = Y.id"
+    followed_user_ids = "SELECT X.id FROM (SELECT users.* FROM users INNER JOIN relationships ON users.id = relationships.followed_id WHERE relationships.follower_id = :user_id) X INNER JOIN (SELECT users.* FROM users INNER JOIN relationships ON users.id = relationships.follower_id WHERE relationships.followed_id = :user_id) Y ON X.id = Y.id"
     where("id IN (#{followed_user_ids})",user_id: user.id)
   end
 
