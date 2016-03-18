@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
-  has_many :blogs, :dependent => :delete_all
-  has_many :comments
+  has_many :blogs, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   #第一段階「中間テーブルと関係を定義する」
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy

@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     hash[:uid] = User.create_unique_string 
     super 
   end
+
   
   private
   def configure_permitted_parameters
