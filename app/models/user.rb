@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   def image_path
-      if self.avatar.thumb.url.present?
-        self.avatar.thumb.url
+      if self.avatar.url.present?
+        self.avatar.url
       elsif self.image.present?
         self.image
       else
