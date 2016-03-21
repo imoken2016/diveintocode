@@ -8,7 +8,9 @@
         <%= f.label :name %><br />
         <%= f.text_field :name, autofocus: true, :class => "form-control" %>
       </div>
-      <% if @user.provider != 'twitter' && 'facebook' %>
+      <% if @user.provider == 'twitter' %>
+      <% elsif @user.provider == 'twitter' %>
+      <% else %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, :class => "form-control" %>
