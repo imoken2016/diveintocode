@@ -15,7 +15,7 @@
 
 
 
-30.times do |num|
+100.times do |num|
   @user = User.new(:name => "名無し太朗#{num}", :email => "hogehoge#{num}@example.com", :password => "12345678", :uid => User.create_unique_string, confirmed_at: Time.now)
   @user.skip_confirmation!
   @user.save!
