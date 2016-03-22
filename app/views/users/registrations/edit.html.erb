@@ -8,15 +8,13 @@
         <%= f.label :name %><br />
         <%= f.text_field :name, autofocus: true, :class => "form-control" %>
       </div>
-      <% if @user.provider == 'twitter' %>
-      <% elsif @user.provider == 'facebook' %>
-      <% else %>
+      <% if @user.provider == '' %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, :class => "form-control" %>
         </div>
       <% end %>
-    
+
       <div class="field">
         <%= f.label :image %><br />
         <%= f.file_field :avatar %>
