@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   #第一段階「中間テーブルと関係を定義する」
-  has_many :relationships, foreign_key: "follower_ijd", dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship",dependent: :destroy
 
   #第二弾階「相対的な参照関係を定義する」

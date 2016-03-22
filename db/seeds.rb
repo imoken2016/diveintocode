@@ -13,9 +13,14 @@
 #Blog.create([{ title: 'できた！', content: '本文を入れるよ',user_id: user.id }])
 #Title.create(:name => '観察日記', :sales_date => '2011-11-14', :price => 1000)
 
-100.times do |no|
-  user = User.create(name: "名無し太朗#{no}号", email: "hogehoge#{no}@example.com", password: '12345678', password_confirmation: '12345678', confirmed_at: Time.now,uid: no)
-  Blog.create(title: "できたよ！#{no}", content: "本文を入れるよ", user_id: user.id )
-end
 
+
+30.times do |num|
+  @user = User.new(:name => "名無し太朗#{num}", :email => "hogehoge#{num}@example.com", :password => "12345678", :uid => User.create_unique_string, confirmed_at: Time.now)
+  @user.skip_confirmation!
+  @user.save!
+  3.times do |blog_num|
+    @post = @user.blogs.create(:title => "できたよ#{blog_num}", :content => "本文いれるよ#{blog_num}")
+  end
+end
 
