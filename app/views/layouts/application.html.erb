@@ -36,6 +36,8 @@
                 <li><%= link_to "設定変更", edit_user_registration_path %></li>
                 <li><%= link_to "ブログ一覧", blogs_path %></li>
                 <li><%= link_to "ユーザ一覧", users_path %></li>
+                <li><%= link_to "マイタスク", user_tasks_path(current_user) %></li>
+                <li><%= link_to "タスクライン", taskline_tasks_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "メール受信一覧", contacts_inbox_path %></li>
                 <li role="separator" class="divider"></li>

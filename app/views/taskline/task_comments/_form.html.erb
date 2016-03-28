@@ -1,0 +1,26 @@
+<%= form_for([:taskline, taskline_task_comment], remote: true ) do |f| %>
+  <% if taskline_task_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(taskline_task_comment.errors.count, "error") %> prohibited this taskline_task_comment from being saved:</h2>
+
+      <ul>
+      <% taskline_task_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field"> 
+      <%= f.hidden_field :task_id,  value: taskline_task_comment.task_id %> 
+      <%= f.hidden_field :user_id, value: current_user.id %> 
+    </div>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

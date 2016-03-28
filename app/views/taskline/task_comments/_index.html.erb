@@ -1,0 +1,12 @@
+<ul>
+<% task_comments.each do |taskcomment| %>
+  <% unless taskcomment.id.nil? %>
+      <li><%= taskcomment.user.name %>
+          <%= taskcomment.content %>
+          <%= link_to 'Edit', edit_taskline_task_comment_path(taskcomment) %>
+          <%= link_to 'Destroy',taskline_task_comment_path(taskcomment), method: :delete, remote: true, data: { confirm: 'Are you sure?'} %>
+      </li>
+  <% end %>
+<% end %>
+</ul>
+<br>

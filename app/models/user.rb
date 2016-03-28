@@ -14,7 +14,15 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  has_many :tasks, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
+
+  scope :followed_users, -> (user_id) do
+    joins(:reverse_relationships).where(relationships: { follower_id: user_id })
+  end
+  scope :follower_users, -> (user_id) do
+    joins(:relationships).where(relationships: { followed_id: user_id })
+  end
 
   def image_path
       if self.avatar.url.present?
@@ -109,13 +117,24 @@ class User < ActiveRecord::Base
 
   #自分がフォローしあっているユーザー一覧を取得する
   def friend
-    User.form_users_followed_by(self)
+    User.from_users_followed_by(self)
   end
 
   #フォローしあっているユーザー一覧を取得する
-  def self.form_users_followed_by(user)
+  def self.from_users_followed_by(user)
     followed_user_ids = "SELECT X.id FROM (SELECT users.* FROM users INNER JOIN relationships ON users.id = relationships.followed_id WHERE relationships.follower_id = :user_id) X INNER JOIN (SELECT users.* FROM users INNER JOIN relationships ON users.id = relationships.follower_id WHERE relationships.followed_id = :user_id) Y ON X.id = Y.id"
     where("id IN (#{followed_user_ids})",user_id: user.id)
+  end
+
+  #フォローしている人のタスクフィードを取得する
+  #def taskfeed
+  #  tasks = Task.where(user_id: self)
+  #  Task.from_users_followed_by(self).order("updated_at DESC")
+  #end
+
+  def taskfeed
+    taskfeed_users_ids = self.mutual_followers.ids << self.id
+    Task.where(user_id: taskfeed_users_ids)
   end
 
 end

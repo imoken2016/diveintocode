@@ -1,0 +1,4 @@
+$("#feedtask_<%= @task.id %>").html("<%= j(render partial: 'taskline/task_comments/index',locals: { task_comments: @task.task_comments}) %>");
+$(':text').val('')
+
+
