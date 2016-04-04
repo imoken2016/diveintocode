@@ -1,25 +1,31 @@
-<%= page_entries_info @feed_tasks %>
-<% if @feed_tasks.any? %>
-  <div id ="feedtask">
-    <table>
-        <tbody><% @feed_tasks.each do |feedtask| %>
-        <div>
-          <tr class = "feedtask_list">
-            <%= feedtask.title %>
-            <%= feedtask.content %>
-            <%= feedtask.user.name %>
-          </tr>
-        </div>
-        <div id="goodjob_<%= feedtask.id %>">
-          <%= render partial: 'taskline/tasks/gjbcount',locals: { gjb_count: feedtask.goodjobs.sum(:number) } %>
-        </div>
-          <%= render partial: 'taskline/tasks/goodjob',locals: {task: feedtask}%>
-        <div id="feedtask_<%= feedtask.id %>">
-          <%= render partial: 'taskline/task_comments/index',locals: { task_comments: feedtask.task_comments } %>
-        </div>
-          <%= render partial: 'taskline/task_comments/form',locals: { taskline_task_comment: feedtask.task_comments.build } %>
-        <% end %></tbody>
-    </table>
+<div class="row">
+  <div class="col-sm-6 col-md-4 innerLR">
+    <%= page_entries_info @feed_tasks %>
+    <% if @feed_tasks.any? %>
+      <div id ="feedtask">
+        <% @feed_tasks.each do |feedtask| %>
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title"><%= feedtask.title %></h3>
+            </div>
+            <div class="panel-body">
+              <p><%= feedtask.content %><p>
+              ユーザー:<%= feedtask.user.name %>
+              <h5>[グッドジョブカウント]</h5>
+              <div id="goodjob_<%= feedtask.id %>">
+                <%= render partial: 'taskline/tasks/gjbcount',locals: { gjb_count: feedtask.goodjobs.sum(:number) } %>
+              </div>
+                <%= render partial: 'taskline/tasks/goodjob',locals: {task: feedtask}%>
+              <h5>[コメント]</h5>
+              <div id="feedtask_<%= feedtask.id %>">
+                <%= render partial: 'taskline/task_comments/index',locals: { task_comments: feedtask.task_comments } %>
+              </div>
+              <%= render partial: 'taskline/task_comments/form',locals: { taskline_task_comment: feedtask.task_comments.build } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= paginate @feed_tasks %>
   </div>
-<% end %>
-<%= paginate @feed_tasks %>
+</div>

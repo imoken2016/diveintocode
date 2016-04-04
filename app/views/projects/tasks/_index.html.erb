@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>タスク作成者</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.user.name %></td>
+
+        <td><% if task.user.id === current_user.id %><%= link_to '編集', edit_project_task_path(@project,task) %><% end %></td>
+        <td><% if task.user.id === current_user.id %><%= link_to '削除', project_task_path(@project,task), method: :delete, data: { confirm: '本当に削除してもよろしいでしょうか?' } %><% end %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

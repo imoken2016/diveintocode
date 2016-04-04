@@ -1,0 +1,6 @@
+<% project_members = ProjectMember.where(project_id: @project.id) %>
+<% project_members.each do |member| %>
+    <div class="field">
+      <%= member.user.name %>
+    </div>
+<% end %>

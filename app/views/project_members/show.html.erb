@@ -1,0 +1,12 @@
+<p>
+  <strong>プロジェクト名:</strong>
+  <%= @project_member.project.title %>
+</p>
+
+<p>
+  <strong>ユーザー名:</strong>
+  <%= @project_member.user.name %>
+</p>
+
+<%= link_to 'Edit', edit_project_member_path(@project_member) %> |
+<%= link_to 'Back', project_members_path %>

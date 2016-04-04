@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
   has_many :blogs, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :projects, dependent: :destroy
+
+  has_many :project_members
+  has_many :projects, through: :project_members
 
   #第一段階「中間テーブルと関係を定義する」
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy

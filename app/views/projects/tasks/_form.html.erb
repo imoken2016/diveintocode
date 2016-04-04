@@ -1,0 +1,28 @@
+<%= form_for [@project, @task] do |f| %>
+    <div class="field">
+      <%= f.label :title %>
+    </div>
+    <div class="field">
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %>
+    </div>
+    <div class="field">
+      <%= f.text_field :content %>
+    </div>
+    <div class="field">
+      <%= f.label :done %>
+    </div>
+    <div class="field">
+      <%= f.check_box :done %>
+    </div>
+    <% if @task.persisted? %>
+        <div class="field">
+          <%= f.label :status %>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.submit %>
+    </div>
+<% end %>

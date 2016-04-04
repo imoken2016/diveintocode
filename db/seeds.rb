@@ -27,5 +27,10 @@
   end
 end
 
+odd = User.find_by_email('hogehoge0@example.com')
+Task.create(title: "Task 0", content: "TC 0", done: true, user: even, charge: even)
+1.upto(100) do |n|
+  Task.create(title: "Task #{n}", content: "TC #{n}", done: false, user: n.even? ? even : odd, charge: e.even? ? even : odd)
+end
 
 

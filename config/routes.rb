@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :project_members
+  resources :projects do
+    resources :tasks, controller: "projects/tasks"
+  end
+
   namespace :taskline do
     resources :task_comments
   end

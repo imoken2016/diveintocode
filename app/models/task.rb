@@ -2,6 +2,7 @@ class Task < ActiveRecord::Base
   has_many :task_comments, dependent: :destroy
   has_many :goodjobs, dependent: :destroy
   belongs_to :user
+  belongs_to :project
   belongs_to :charge, class_name:'User', foreign_key: 'charge_id'
   validates :content, presence: true
 

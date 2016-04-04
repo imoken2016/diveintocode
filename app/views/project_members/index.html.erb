@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>プロジェクト名</th>
+      <th>ユーザー名</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_members.each do |project_member| %>
+      <tr>
+        <td><%= project_member.project.title %></td>
+        <td><%= project_member.user.name %></td>
+        <td><%= link_to 'Show', project_member %></td>
+        <td><%= link_to 'Edit', edit_project_member_path(project_member) %></td>
+        <td><%= link_to 'Destroy', project_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project member', new_project_member_path %>

@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>User:</strong>
@@ -34,5 +33,5 @@
   <%= if @task.status == 1 then "対応中" elsif @task.status == 0 then "未着手" end %>
 </p>
 
-<%= link_to 'Edit', edit_user_task_path(@task.user, @task) %> |
-<%= link_to 'Back', user_tasks_path(@task.user) %>
+<%= link_to '編集', edit_user_task_path(@task.user, @task) %> |
+<%= link_to '一覧へ', user_tasks_path(@task.user) %>
