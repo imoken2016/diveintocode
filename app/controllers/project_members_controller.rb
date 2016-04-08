@@ -14,6 +14,7 @@ class ProjectMembersController < ApplicationController
 
   # GET /project_members/new
   def new
+    @project = params[:projects_id]
     @project_member = ProjectMember.new
   end
 
@@ -28,7 +29,7 @@ class ProjectMembersController < ApplicationController
 
     respond_to do |format|
       if @project_member.save
-        format.html { redirect_to @project_member, notice: 'Project member was successfully created.' }
+        format.html { redirect_to project_path(@project_member.project_id), notice: 'Project member was successfully created.' }
         format.json { render :show, status: :created, location: @project_member }
       else
         format.html { render :new }
@@ -56,7 +57,7 @@ class ProjectMembersController < ApplicationController
   def destroy
     @project_member.destroy
     respond_to do |format|
-      format.html { redirect_to project_members_url, notice: 'Project member was successfully destroyed.' }
+      format.html { redirect_to projects_path, notice: 'プロジェクトメンバーを削除しました' }
       format.json { head :no_content }
     end
   end

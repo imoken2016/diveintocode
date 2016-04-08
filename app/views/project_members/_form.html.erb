@@ -1,8 +1,7 @@
-<%= form_for(@project_member) do |f| %>
+<%= form_for([@project,@project_member],:url => project_project_members_path) do |f| %>
   <% if @project_member.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project_member.errors.count, "error") %> prohibited this project_member from being saved:</h2>
-
       <ul>
       <% @project_member.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,11 +11,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.collection_select :project_id, Project.all, :id, :title %>
+    <%= f.hidden_field :project_id,  value: params[:project_id] %> 
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
+    <%= f.label :追加するプロジェクトメンバー %><br>
     <%= f.collection_select :user_id, User.all, :id, :name %>
   </div>
   <div class="actions">

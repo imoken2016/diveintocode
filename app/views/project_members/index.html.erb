@@ -12,8 +12,6 @@
       <tr>
         <td><%= project_member.project.title %></td>
         <td><%= project_member.user.name %></td>
-        <td><%= link_to 'Show', project_member %></td>
-        <td><%= link_to 'Edit', edit_project_member_path(project_member) %></td>
         <td><%= link_to 'Destroy', project_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -21,5 +19,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Project member', new_project_member_path %>

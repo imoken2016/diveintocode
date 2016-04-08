@@ -7,4 +7,5 @@ class Project < ActiveRecord::Base
   def user_name
     User.find(self.user_id).name
   end
+
 end
