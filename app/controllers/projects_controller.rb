@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :project_join?, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -71,4 +72,9 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:title, :content, :user_id)
     end
+
+    def project_join?
+      redirect_to root_url if ProjectMember.find_by(project_id: params[:id], user_id: current_user.id).blank?
+    end
+
 end

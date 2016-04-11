@@ -1,31 +1,37 @@
-<h1>プロジェクト一覧</h1>
+<div class="row">
+  <div class="col-md-12 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title">プロジェクト一覧</h1>
+      </div>
+      <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>内容</th>
+            <th>プロジェクトオーナー</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>内容</th>
-      <th>プロジェクトオーナー</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td><%= project.title %></td>
+              <td><%= project.content %></td>
+              <td><%= project.user.name %></td>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.content %></td>
-        <td><%= project.user.name %></td>
-
-        <td><% if project.user.id === current_user.id %>
-              <%= link_to '詳細', project %><% end %></td>
-        <td><% if project.user.id === current_user.id %><%= link_to '編集', edit_project_path(project) %><% end %></td>
-        <td><% if project.user.id === current_user.id %><%= link_to '削除', project, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to '新しいプロジェクト作成', new_project_path %>
+              <td><% if project.user.id === current_user.id %>
+                    <%= link_to '詳細', project %><% end %></td>
+              <td><% if project.user.id === current_user.id %><%= link_to '編集', edit_project_path(project) %><% end %></td>
+              <td><% if project.user.id === current_user.id %><%= link_to '削除', project, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to '新しいプロジェクト作成', new_project_path %>
+      </div>
+    </div>
+  </div>
+</div>

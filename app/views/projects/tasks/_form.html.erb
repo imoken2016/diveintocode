@@ -3,23 +3,23 @@
       <%= f.label :title %>
     </div>
     <div class="field">
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :class => "form-control" %>
     </div>
     <div class="field">
       <%= f.label :content %>
     </div>
     <div class="field">
-      <%= f.text_field :content %>
+      <%= f.text_field :content, :class => "form-control" %>
     </div>
     <div class="field">
-      <%= f.label :done %>
+      <%= f.label :完了 %>
     </div>
     <div class="field">
-      <%= f.check_box :done %>
+      <%= f.check_box :done, :class => "form-control" %>
     </div>
     <% if @task.persisted? %>
         <div class="field">
-          <%= f.label :status %>
+          <%= f.label :status, :class => "form-control" %>
         </div>
     <% end %>
     <div class="field">
