@@ -4,7 +4,8 @@ class ProjectMembersController < ApplicationController
   # GET /project_members
   # GET /project_members.json
   def index
-    @project_members = ProjectMember.all
+    @project = params[:project_id]
+    @project_members = ProjectMember.where(project_id: @project)
   end
 
   # GET /project_members/1
