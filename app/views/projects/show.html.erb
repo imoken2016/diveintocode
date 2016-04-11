@@ -1,39 +1,42 @@
-<h2>プロジェクト情報</h2>
-<p>
-  <strong>タイトル:</strong>
-  <%= @project.title %>
-</p>
+<div class="row">
+  <div class="col-md-8 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">プロジェクト詳細</h2>
+      </div>
+      <div class="panel-body">
+        <h3><%= @project.title %></h3>
+        <%= @project.content %><br />
+        <em><%= @project.created_at %></em>
+        <p><em>オーナー:<%= @project.user.name %></em></p>
+        <p><% if @project.user === @current_user %><%= link_to '編集', edit_project_path(@project) %><% end %></p>
+        <p><%= link_to '一覧に戻る', projects_path %></p>
+        <p>このページはメンバーのみ閲覧可能なページです</p>
 
-<p>
-  <strong>内容:</strong>
-  <%= @project.content %>
-</p>
-
-<p>
-  <strong>オーナー:</strong>
-  <%= @project.user.name %>
-</p>
-
-<%= link_to '編集', edit_project_path(@project) %> |
-<%= link_to '一覧に戻る', projects_path %>
-
-
-
-
-
-<h2>プロジェクトメンバー</h2>
-<%= render "project_members/index", project_members: @project_members %>
-<br>
-<%= link_to 'プロジェクトメンバーを管理する', project_project_members_path(@project) %><br>
-<%= link_to '新しくプロジェクトメンバーを追加する', new_project_project_member_path(@project) %>
-
-
-
-
-<h2>タスク情報</h2>
-<%= render "projects/tasks/index", tasks: @project.tasks %>
-
-<%= link_to '新しいタスクを追加する', new_project_task_path(@project) %>
-<br />
-
-
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">プロジェクトメンバー</h2>
+      </div>
+      <div class="panel-body">
+        <%= render "project_members/index", project_members: @project_members %>
+        <%= link_to 'プロジェクトメンバーを管理する', project_project_members_path(@project) %><br>
+        <%= link_to '新しくプロジェクトメンバーを追加する', new_project_project_member_path(@project) %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">タスク一覧</h2>
+      </div>
+      <div class="panel-body">
+        <%= render "projects/tasks/index", tasks: @project.tasks %>
+        <%= link_to '新しいタスクを追加する', new_project_task_path(@project) %>
+      </div>
+    </div>
+  </div>
+</div>

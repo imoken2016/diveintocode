@@ -1,12 +1,27 @@
 <% if @project.user_id === current_user.id %>
-  <h1>プロジェクトの編集</h1>
 
-  <%= render 'form' %>
-
-<%= link_to '詳細', @project %> |
-<%= link_to '戻る', projects_path %>
-
+<div class="row">
+  <div class="col-md-6 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title">プロジェクトの編集</h1>
+      </div>
+      <div class="panel-body">
+        <%= render 'form' %>
+        <%= link_to '詳細', @project %> |
+        <%= link_to '戻る', projects_path %>
+      </div>
+    </div>
+  </div>
+</div>
 <% else %>
     <p>このページへのアクセスは出来ません。</p>
     <%= link_to '戻る', projects_path %>
 <% end %>
+
+
+
+
+
+
+

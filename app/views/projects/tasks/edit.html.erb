@@ -1,3 +1,16 @@
-<h3>タスクの編集</h3>
 
-<%= render "form" %>
+<div class="row">
+  <div class="col-md-6 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title">タスクの編集</h1>
+      </div>
+      <div class="panel-body">
+        <%= render 'form' %>
+        <%= link_to '戻る', project_path(@project) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

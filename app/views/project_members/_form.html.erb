@@ -15,7 +15,7 @@
   </div>
   <div class="field">
     <%= f.label :メンバー名 %><br>
-    <%= f.collection_select :user_id, User.all, :id, :name %>
+    <%= f.collection_select :user_id, User.all, :id, :name, :class => "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit %>
