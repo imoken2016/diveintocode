@@ -1,12 +1,3 @@
-<% project_members = ProjectMember.where(project_id: @project.id) %>
-
-<% if project_members.include?(current_user)  %>
-    <h2>プロジェクトメンバーのみ表示できる</h2>
-    <% else %>
-    <h2>だめです</h2>
-<% end %>
-
-
 <h2>プロジェクト情報</h2>
 <p>
   <strong>タイトル:</strong>
@@ -23,13 +14,17 @@
   <%= @project.user.name %>
 </p>
 
+<%= link_to '編集', edit_project_path(@project) %> |
+<%= link_to '一覧に戻る', projects_path %>
+
+
+
+
+
 <h2>プロジェクトメンバー</h2>
 <%= render "project_members/index", project_members: @project_members %>
-
-<p>プロジェクトメンバー一覧が見れる、追加できる、削除できる</p>
-
 <br>
-<%= link_to 'プロジェクトメンバーを管理する', project_project_members_path(@project) %>
+<%= link_to 'プロジェクトメンバーを管理する', project_project_members_path(@project) %><br>
 <%= link_to '新しくプロジェクトメンバーを追加する', new_project_project_member_path(@project) %>
 
 
@@ -41,8 +36,4 @@
 <%= link_to '新しいタスクを追加する', new_project_task_path(@project) %>
 <br />
 
-
-
-<%= link_to '編集', edit_project_path(@project) %> |
-<%= link_to '戻る', projects_path %>
 
