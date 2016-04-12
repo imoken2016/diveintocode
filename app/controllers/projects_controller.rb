@@ -74,7 +74,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_join?
-      redirect_to root_url if ProjectMember.find_by(project_id: params[:id], user_id: current_user.id).blank?
+      redirect_to root_url if ProjectMember.find_by(project_id: params[:id], user_id: current_user.id).blank? && Project.find(params[:id]).user_id != current_user.id
     end
 
 end
