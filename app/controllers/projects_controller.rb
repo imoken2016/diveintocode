@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :sign_in_required, only: [:index,:show, :edit, :update, :destroy]
   before_action :project_join?, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
@@ -70,11 +71,11 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :content, :user_id)
+      params.require(:project).permit(:title, :content, :user_id, :customer_id)
     end
 
     def project_join?
-      redirect_to root_url if ProjectMember.find_by(project_id: params[:id], user_id: current_user.id).blank?
+      redirect_to root_url if ProjectMember.find_by(project_id: params[:id], user_id: current_user.id).blank? && Project.find(params[:id]).user_id != current_user.id
     end
 
 end

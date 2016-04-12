@@ -20,9 +20,14 @@
     <%= f.text_area :content, :class => "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :オーナー %><br>
-    <%= f.collection_select :user_id, User.all, :id, :name, :class => "form-control" %>
+    <%= f.label :作成者 %><br>
+    <%= current_user.name %>
+    <%= f.hidden_field :user_id,  value: current_user.id %> 
   </div>
+    <div class="field">
+      <%= f.label :顧客 %><br>
+      <%= f.collection_select :customer_id, Customer.all, :id, :name, :class => "form-control" %>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

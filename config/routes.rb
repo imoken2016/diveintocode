@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :customers
   resources :projects do
     resources :tasks, controller: "projects/tasks"
     resources :project_members, only: [:index, :new, :create]
