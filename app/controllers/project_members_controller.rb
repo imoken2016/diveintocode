@@ -30,7 +30,7 @@ class ProjectMembersController < ApplicationController
 
     respond_to do |format|
       if @project_member.save
-        format.html { redirect_to project_path(@project_member.project_id), notice: 'Project member was successfully created.' }
+        format.html { redirect_to project_project_members_path(@project_member.project_id), notice: 'プロジェクトメンバーを追加しました。' }
         format.json { render :show, status: :created, location: @project_member }
       else
         format.html { render :new }

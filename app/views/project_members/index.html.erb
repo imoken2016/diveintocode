@@ -22,7 +22,8 @@
           <% end %>
           </tbody>
         </table>
-        <%= link_to 'プロジェクト詳細に戻る', project_path(@project) %>
+        <p><%= link_to '新しくプロジェクトメンバーを追加する', new_project_project_member_path(@project) %></p>
+        <p><%= link_to 'プロジェクト詳細に戻る', project_path(@project) %></p>
       </div>
     </div>
   </div>
