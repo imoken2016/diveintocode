@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :sign_in_required, only: [:index,:show, :edit, :update, :destroy]
   before_action :project_join?, only: [:show, :edit, :update, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
