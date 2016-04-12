@@ -7,13 +7,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#blog = Blog.create([{ title: 'できた！', content: '本文を入れるよ',user_id: 28 }])
-#User.create(id: 28, blog_id: blog.first)
-#user = User.create(id: 28)
-#Blog.create([{ title: 'できた！', content: '本文を入れるよ',user_id: user.id }])
-#Title.create(:name => '観察日記', :sales_date => '2011-11-14', :price => 1000)
-
-
 
 30.times do |num|
   @user = User.new(:name => "名無し太朗#{num}", :email => "hogehoge#{num}@example.com", :password => "12345678", :uid => User.create_unique_string, confirmed_at: Time.now)
