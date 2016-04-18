@@ -3,8 +3,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
 <meta charset="UTF-8">
 <head>
-  <%= stylesheet_link_tag "bootstrap", media: "all", "data-turbolinks-track" => true %>
-  
   <title>Dive into Code</title>
   <meta name="viewport" content="width=device-width">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -39,6 +37,7 @@
                 <li><%= link_to "ユーザ一覧", users_path %></li>
                 <li><%= link_to "マイタスク", user_tasks_path(current_user) %></li>
                 <li><%= link_to "タスクライン", taskline_tasks_path %></li>
+                <li><%= link_to "タスク依頼", user_submit_requests_path(current_user) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "メール受信一覧", contacts_inbox_path %></li>
                 <li role="separator" class="divider"></li>

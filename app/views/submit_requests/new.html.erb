@@ -1,0 +1,11 @@
+<div>
+  <h1>依頼する内容</h1>
+  <div>
+        <% if @tasks.present? %>
+            <%= render "form" %>
+        <% else %>
+            依頼できるものがありません。
+        <% end %>
+    <%= link_to "戻る", user_submit_requests_path(@submit_request.user_id) %>
+  </div>
+</div>

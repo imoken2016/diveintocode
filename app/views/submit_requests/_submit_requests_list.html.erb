@@ -1,0 +1,33 @@
+<% if submit_requests.present? %>
+    <p><%= submit_requests.count %>件</p>
+    <div>
+      <table class="table">
+        <thead>
+        <th>ステータス</th>
+        <th>タイトル</th>
+        <th>依頼者</th>
+        <th>担当者</th>
+        <th>依頼日</th>
+        <th>ステータス</th>
+        </thead>
+        <tbody>
+        <% submit_requests.each do |request| %>
+            <tr>
+              <td class="sr_tbl"><%= request.status_display_name %></td>
+              <td><%= link_to request.task.title, user_task_path(current_user, request.task) %></td>
+              <td><%= request.client_name %></td>
+              <td><%= request.charger_name(current_user) %></td>
+              <td><%= request.created_at.strftime("%y/%m/%d") %></td>
+              <td><%= request.task.done_display_name %></td>
+              <td><%= link_to "詳細", submit_request_path(request) %></td>
+              <td><%= link_to "編集", edit_submit_request_path(request) %></td>
+              <td><%= link_to "削除", submit_request_path(request), method: :delete, data: { confirm: '削除しますか？' } %></td>
+              <td><%= link_to "取消", submit_request_reject_path(request), data: request.id, remote: true if request.status == 1 %></td>
+              <td><%= link_to "承認", submit_request_approve_path(request) %></td>
+              <td><%= link_to "却下", submit_request_unapprove_path(request) %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>

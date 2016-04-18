@@ -1,0 +1,8 @@
+<div>
+  <h1>依頼する内容</h1>
+  <div>
+    <%= render "form" %>
+    <%= link_to "詳細", submit_request_path(@submit_request) %> |
+    <%= link_to "戻る", user_submit_requests_path(@submit_request) %>
+  </div>
+</div>

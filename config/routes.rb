@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :customers
   resources :projects do
     resources :tasks, controller: "projects/tasks"
@@ -31,7 +30,16 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :submit_requests, shallow: true do
+      post 'approve'
+      post 'unapprove'
+      get 'reject'
+      collection do
+        get 'inbox'
+      end
+    end
   end
+
   root to: "top#index"
   resources :blogs do
     resources :comments

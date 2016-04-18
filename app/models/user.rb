@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
 
   has_many :tasks, dependent: :destroy
+  has_many :submit_requests, dependent: :destroy
+
   mount_uploader :avatar, AvatarUploader
 
   scope :followed_users, -> (user_id) do

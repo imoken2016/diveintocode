@@ -1,0 +1,5 @@
+<div id="submit_requests_<%= current_user.id %>">
+  <%= render partial: 'submit_requests_list',locals: {submit_requests: @submit_requests} %>
+</div>
+<p><%= link_to '新規依頼', new_user_submit_request_path %></p>
+<p><%= link_to '依頼されている一覧', inbox_user_submit_requests_path %></p>
