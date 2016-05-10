@@ -3,7 +3,7 @@
     <div>
       <table class="table">
         <thead>
-        <th>ステータス</th>
+        <th>依頼状態</th>
         <th>タイトル</th>
         <th>依頼者</th>
         <th>担当者</th>
@@ -20,11 +20,11 @@
               <td><%= request.created_at.strftime("%y/%m/%d") %></td>
               <td><%= request.task.done_display_name %></td>
               <td><%= link_to "詳細", submit_request_path(request) %></td>
-              <td><%= link_to "編集", edit_submit_request_path(request) %></td>
-              <td><%= link_to "削除", submit_request_path(request), method: :delete, data: { confirm: '削除しますか？' } %></td>
-              <td><%= link_to "取消", submit_request_reject_path(request), data: request.id, remote: true if request.status == 1 %></td>
-              <td><%= link_to "承認", submit_request_approve_path(request) %></td>
-              <td><%= link_to "却下", submit_request_unapprove_path(request) %></td>
+              <td><%= link_to "編集", edit_submit_request_path(request)  if request.user_id === current_user.id && request.status == 1 %></td>
+              <td><%= link_to "削除", submit_request_path(request), method: :delete, data: { confirm: '削除しますか？' }  if request.user_id === current_user.id && request.status == 1 %></td>
+              <td><%= link_to "取消", submit_request_reject_path(request), data: request.id, remote: true if request.status == 1 && request.user_id === current_user.id %></td>
+              <td><%= link_to "承認", submit_request_approve_path(request), remote: true if request.status == 1 && request.user_id != current_user.id %></td>
+              <td><%= link_to "却下", submit_request_unapprove_path(request), remote: true if request.status == 1 && request.user_id != current_user.id %></td>
             </tr>
         <% end %>
         </tbody>

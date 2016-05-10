@@ -1,7 +1,25 @@
 <%= form_for([@user, @submit_request]) do |f| %>
-  <p><%= f.collection_select :task_id, @tasks, :id, :title %></p>
-  <p><%= f.collection_select :charge_id, User.all, :id, :name %></p>
-  <p><%= f.text_area :message, placeholder: "依頼メッセージ", size: "50*100" %></p>
+  <div class="field">
+    <strong>タスク：</strong>
+  </div>
+  <div class="field">
+    <p><%= f.collection_select :task_id, @tasks, :id, :title %></p>
+  </div>
+
+  <div class="field">
+    <strong>依頼先：：</strong>
+  </div>
+  <div class="field">
+    <p><%= f.collection_select :charge_id, @users, :id, :name %></p>
+  </div>
+
+  <div class="field">
+    <strong>依頼メッセージ：</strong>
+  </div>
+  <div class="field">
+    <p><%= f.text_area :message, placeholder: "依頼メッセージ", size: "50*100" %></p>
+  </div>
+
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :status %>
   <div class="field">

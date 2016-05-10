@@ -1,27 +1,19 @@
-<p>
-  <strong>依頼者:</strong>
-  <%= @submit_request.user.name if @submit_request.user.present? %>
-</p>
+<div class="row">
+  <div class="col-md-8 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">依頼したタスク詳細</h2>
+      </div>
+      <div class="panel-body">
+        <h3><%= @submit_request.task.title %></h3>
+        <p><em>依頼者:<%= @submit_request.user.name if @submit_request.user.present? %></em></p>
+        <p><em>担当者:<%= @submit_request.charger.name if @submit_request.user.present? %></em></p>
+        <p><em>ステータス:<%= @submit_request.status_display_name %></em></p>
+        <p><em>メッセージ:<%= simple_format(@submit_request.message) %></em></p>
+        <p><% if @submit_request.user === current_user %><%= link_to '編集', edit_submit_request_path(@submit_request) %><% end %></p>
+        <p><%= link_to "一覧へ戻る", user_submit_requests_path(@submit_request) %></p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>タスク:</strong>
-  <%= @submit_request.task.title %>
-</p>
-
-<p>
-  <strong>担当者:</strong>
-  <%= @submit_request.charger.name if @submit_request.user.present? %>
-</p>
-
-<p>
-  <strong>ステータス:</strong>
-  <%= @submit_request.status_display_name %>
-</p>
-
-<p>
-  <strong>メッセージ:</strong>
-  <%= simple_format(@submit_request.message) %>
-</p>
-
-<%= link_to "Edit", edit_submit_request_path(@submit_request) %>
-<%= link_to "一覧へ戻る", user_submit_requests_path(@submit_request) %>

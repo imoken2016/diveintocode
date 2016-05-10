@@ -38,6 +38,8 @@
                 <li><%= link_to "マイタスク", user_tasks_path(current_user) %></li>
                 <li><%= link_to "タスクライン", taskline_tasks_path %></li>
                 <li><%= link_to "タスク依頼", user_submit_requests_path(current_user) %></li>
+                <li><%= link_to "依頼されているタスク", inbox_user_submit_requests_path(current_user) %></li>
+
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "メール受信一覧", contacts_inbox_path %></li>
                 <li role="separator" class="divider"></li>

@@ -1,11 +1,19 @@
-<div>
-  <h1>依頼する内容</h1>
-  <div>
+<div class="row">
+  <div class="col-md-6 innerLR">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title">依頼する内容</h1>
+      </div>
+      <div class="panel-body">
         <% if @tasks.present? %>
             <%= render "form" %>
         <% else %>
             依頼できるものがありません。
         <% end %>
-    <%= link_to "戻る", user_submit_requests_path(@submit_request.user_id) %>
+        <%= link_to "戻る", user_submit_requests_path(@submit_request.user_id) %>
+      </div>
+    </div>
   </div>
 </div>
+
+

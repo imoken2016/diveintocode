@@ -1,5 +1,6 @@
 class SubmitRequestsController < ApplicationController
-  before_action :set_submit_request, only: [:show, :edit, :update, :destroy, :approve, :unapprove]
+  before_action :set_submit_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_submit_request_approve, only: [:approve, :unapprove]
 
   def index
     @submit_requests = SubmitRequest.where(user_id: current_user.id).order("updated_at DESC")
@@ -12,6 +13,7 @@ class SubmitRequestsController < ApplicationController
   def new
     users_ids = current_user.mutual_followers.ids
     users_ids.delete(current_user.id)
+
     # つながっているユーザー
     @users = User.where(id: users_ids)
     # 自分が作成したタスク
@@ -27,7 +29,7 @@ class SubmitRequestsController < ApplicationController
       if @submit_request.save
         @submit_request.task.update(status: 1)
 
-        format.html { redirect_to @submit_request, notice: 'Successfully created.' }
+        format.html { redirect_to @submit_request, notice: 'タスクを依頼しました。' }
       else
         format.html { render :new }
         format.json { render json: @submit_request.errors, status: :unprocessable_entity }
@@ -105,6 +107,9 @@ class SubmitRequestsController < ApplicationController
   private
     def set_submit_request
       @submit_request = SubmitRequest.find(params[:id])
+    end
+    def set_submit_request_approve
+      @submit_request = SubmitRequest.find(params[:submit_request_id])
     end
 
     def submit_request_params
