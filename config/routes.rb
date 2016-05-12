@@ -57,5 +57,10 @@ Rails.application.routes.draw do
   post 'contacts/thanks' => 'contacts#thanks'     # 送信完了画面
   get 'contacts/inbox' => 'contacts#inbox'
   resources :relationships, only: [:create, :destroy]
+
+  resources :conversations do
+    resources :messages
+  end
+
   
 end

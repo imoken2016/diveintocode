@@ -1,0 +1,35 @@
+<%= paginate @messages %>
+
+<div class="row">
+  <div class="message-index">
+    <div class="col-xs-6">
+      <% @messages.each do |message| %>
+          <% if message.body? %>
+              <% user = User.find(message.user_id) %>
+              <div class="item">
+                <div class="content">
+                  <div class="header">
+                    <strong><%= user.name %></strong>
+                    <%= message.message_time %>
+                  </div>
+                  <div class="list">
+                    <div class="item">
+                      <i class="right triangle icon"></i>
+                      <%= simple_format(message.body) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="message-form">
+    <div class="col-xs-6">
+      <%= render "form", {conversation: @conversation, message: @message} %>
+    </div>
+  </div>
+</div>

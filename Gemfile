@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rspec-rails'
 gem 'capybara'
 gem 'rambulance'
+gem 'pusher'
 
 group :development, :test do
   gem 'awesome_print'

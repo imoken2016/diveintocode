@@ -1,4 +1,13 @@
-<li>
-  <%= link_to user.name, user %>
-</li>
-<%= render partial: 'follow_form', locals:{ user: user} if signed_in?  %>
+<% if user.id != current_user.id%>
+  <li>
+    <div class="item">
+      <%= link_to user.name, user %>
+    </div>
+    <div class="field">
+      <%= link_to "メッセージ", conversations_path(sender_id: current_user, recipient_id: user.id), method: :post, class: "btn btn-info" %>
+    </div>
+    <div class="field">
+      <%= render 'follow_form', user: user if signed_in? %>
+    </div>
+  </li>
+<% end %>

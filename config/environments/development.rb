@@ -53,4 +53,9 @@ Rails.application.configure do
     }
   
   BetterErrors::Middleware.allow_ip! '54.244.95.60'
+  require 'pusher'
+  Pusher.app_id: '205987'
+  Pusher.key: '0ec0f211fa83913d11a2'
+  Pusher.secret: '1c07fa42e25c48f32766'
+
 end

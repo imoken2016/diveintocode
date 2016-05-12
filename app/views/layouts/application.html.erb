@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -39,13 +40,20 @@
                 <li><%= link_to "タスクライン", taskline_tasks_path %></li>
                 <li><%= link_to "タスク依頼", user_submit_requests_path(current_user) %></li>
                 <li><%= link_to "依頼されているタスク", inbox_user_submit_requests_path(current_user) %></li>
-
+                <li><%= link_to "メッセージ", conversations_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "メール受信一覧", contacts_inbox_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               </ul>
             </li>
+            <script>
+              var pusher = new Pusher('<%= Pusher.key %>');
+              var channel = pusher.subscribe('notifications'+<%= current_user.id.to_s %>);
+              channel.bind('message', function(data){
+                alert(data.messaging);
+              });
+            </script>
           <% else %>
             <li><%= link_to "ログイン", new_user_session_path %></li>
             <li><%= link_to "facebook認証", user_omniauth_authorize_path(:facebook), class: 'navbar-link' %></li>
