@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  after_action :sending_pusher, only: [:create]
 
   # GET /comments
   # GET /comments.json
@@ -24,7 +25,9 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
+    @blog = @comment.blog
+    @notification = @comment.notifications.build(recipient_id: @blog.user_id, sender_id: current_user.id)
 
     respond_to do |format|
       if @comment.save
@@ -76,5 +79,9 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:blog_id, :user_id, :content)
+    end
+
+    def sending_pusher
+      Notification.sending_pusher(@notification.recipient_id)
     end
 end

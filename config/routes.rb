@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
+
   resources :customers
   resources :projects do
     resources :tasks, controller: "projects/tasks"
     resources :project_members, only: [:index, :new, :create]
   end
   resources :project_members, only: [:destroy]
-
+  resources :notifications, only: [:index]
 
   namespace :taskline do
     resources :task_comments

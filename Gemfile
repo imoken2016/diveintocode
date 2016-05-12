@@ -55,3 +55,4 @@ gem 'rmagick'
 gem 'sprockets-rails', '2.3.3'
 gem 'dotenv-rails'
 gem 'kaminari'
+gem "font-awesome-rails"

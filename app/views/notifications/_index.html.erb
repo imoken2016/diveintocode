@@ -1,0 +1,5 @@
+<% notifications.each do |notification| %>
+    <div class="field">
+      <%= simple_format("「#{notification.blog.title}」に新着コメントがありました。") %>
+    </div>
+<% end %>
