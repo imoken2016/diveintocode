@@ -1,7 +1,7 @@
 <ul>
   <% @comments.each do |comment| %>
   <% unless comment.id.nil? %>
-    <li><%= comment.user %><%= simple_format(comment.content) %>
+    <li><%= comment.user.name %><%= simple_format(comment.content) %>
     <%= link_to 'Edit', edit_blog_comment_path(@blog,comment) %>
     <%= link_to 'Destroy', blog_comment_path(@blog, comment), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' } %></li>
   <% end %>

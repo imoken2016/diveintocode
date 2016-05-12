@@ -16,6 +16,7 @@
           <p><%= image_tag(blog.user.image_path, :size => "50x50", :alt => "アイコン", :class=>["img-rounded"]) %></p>
           <p><em>投稿者:<%= blog.user.name %></em></p>
           <p><% if blog.user_id === @user.id %><%= link_to '編集', edit_blog_path(blog) %><% end %></p>
+          <%= link_to "詳細を見る", blog_path(blog) %></li>
         </div>
       </div>
       <% end %>
