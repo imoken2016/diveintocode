@@ -1,4 +1,6 @@
 class Notification < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::DateHelper
 
   belongs_to :sender, class_name: "Conversation", foreign_key: :sender_id
   belongs_to :recipient, class_name: "Conversation", foreign_key: :recipient_id

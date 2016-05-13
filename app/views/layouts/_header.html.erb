@@ -36,7 +36,7 @@
             <li class="dropdown notifications-dropdown"><%= render 'layouts/dropdown/notifications' %></li>
             <script>
               var pusher = new Pusher('<%= Pusher.key %>');
-              var channel = pusher.subscribe('notifications'+<%= current_user.id.to_s %>);
+              var channel = pusher.subscribe('notifications' + <%= current_user.id.to_s %>);
               channel.bind('message', function(data){
                 $('#unreadcount').html(data.unread_count);
               });
