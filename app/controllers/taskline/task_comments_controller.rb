@@ -30,7 +30,7 @@ class Taskline::TaskCommentsController < ApplicationController
       if @taskline_task_comment.save
         @task = @taskline_task_comment.task
         @feed_tasks = current_user.taskfeed
-        format.js { render :index, notice: 'task comment was successfully created.' }
+        format.js { render :index, notice: 'タスクの登録をしました。' }
       end
     end
   end

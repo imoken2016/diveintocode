@@ -32,11 +32,11 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to blog_path(@comment.blog_id), notice: 'Comment was successfully created.' }
+        format.html { redirect_to blog_path(@comment.blog_id), notice: 'コメントを投稿しました。' }
         format.json { render :show, status: :created, location: @comment }
         @blog = @comment.blog
         @comments = @blog.comments
-        format.js { render :index, notice: 'Comment was successfully created.' }
+        format.js { render :index, notice: 'コメントを投稿しました。' }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
