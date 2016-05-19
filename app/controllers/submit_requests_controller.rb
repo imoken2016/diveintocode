@@ -1,6 +1,8 @@
 class SubmitRequestsController < ApplicationController
   before_action :set_submit_request, only: [:show, :edit, :update, :destroy]
   before_action :set_submit_request_approve, only: [:approve, :unapprove]
+  after_action :sending_pusher, only: [:create]
+
 
   def index
     @submit_requests = SubmitRequest.where(user_id: current_user.id).order("updated_at DESC")
@@ -24,7 +26,10 @@ class SubmitRequestsController < ApplicationController
   end
 
   def create
-    @submit_request = SubmitRequest.new(submit_request_params)
+
+    @submit_request = current_user.submit_requests.build(submit_request_params)
+    @notification = @submit_request.notifications.build(sender_id: current_user.id, recipient_id: @submit_request.charge_id, read: false)
+
     respond_to do |format|
       if @submit_request.save
         @submit_request.task.update(status: 1)
@@ -108,11 +113,16 @@ class SubmitRequestsController < ApplicationController
     def set_submit_request
       @submit_request = SubmitRequest.find(params[:id])
     end
+
     def set_submit_request_approve
       @submit_request = SubmitRequest.find(params[:submit_request_id])
     end
 
     def submit_request_params
       params.require(:submit_request).permit(:task_id, :user_id, :charge_id, :status, :message)
+    end
+
+    def sending_pusher
+      Notification.sending_pusher(@notification.recipient_id)
     end
 end

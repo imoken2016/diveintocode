@@ -1,5 +1,6 @@
 <% notifications.each do |notification| %>
     <div class="field">
-      <%= simple_format("「#{notification.comment.blog.title}」に新着コメントがありました。") %>
+      <%= simple_format("【ブログ】「#{notification.comment.blog.title}」に新着コメントがありました。") if notification.comment_id.present? %>
+      <%= simple_format("【タスク】「#{notification.submit_request.task.title}」に新着コメントがありました。") if notification.submit_request_id.present? %>
     </div>
 <% end %>
