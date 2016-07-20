@@ -13,3 +13,4 @@
 /tmp
 /public/assets/*
 .env
+/vendor/bundle

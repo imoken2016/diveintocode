@@ -7,7 +7,6 @@ class Notification < ActiveRecord::Base
   belongs_to :comment, class_name: "Comment", foreign_key: :comment_id
   belongs_to :submit_request, class_name: "SubmitRequest", foreign_key: :submit_request_id
 
-
   scope :read, -> {where(read: true)}
   scope :unread, -> { where(read: false) }
   scope :unread_count, -> (user_id) { where(recipient_id: user_id).unread.count }
@@ -17,4 +16,8 @@ class Notification < ActiveRecord::Base
         unread_count: Notification.unread_count(channel_user_id)
     })
   end
+
+  #def self.reading
+  #  self.where(read: true)
+  #end
 end
