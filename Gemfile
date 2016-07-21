@@ -17,6 +17,7 @@ gem 'rambulance'
 gem 'pusher'
 
 group :development, :test do
+  gem 'spring'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -38,6 +39,10 @@ group :development, :test do
   gem "rack-mini-profiler"
   gem "spring-commands-rspec"
   gem "xray-rails"
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
 end
 
 gem 'devise'
@@ -56,3 +61,7 @@ gem 'sprockets-rails', '2.3.3'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem "font-awesome-rails"
+
+group :production, :staging do
+  gem 'unicorn'
+end
