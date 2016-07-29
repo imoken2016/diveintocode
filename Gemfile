@@ -56,7 +56,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'bootstrap-social-rails'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'sprockets-rails', '2.3.3'
 gem 'dotenv-rails'
 gem 'kaminari'
